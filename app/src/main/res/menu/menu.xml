@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mnuOps"
+        android:icon="@android:drawable/btn_star"
+        android:title="Opções"
+        app:showAsAction="always">
+
+        <menu>
+            <item
+                android:id="@+id/mnuClear"
+                android:title="Limpar a lista" />
+            <item
+                android:id="@+id/mnuAbout"
+                android:title="Sobre" />
+        </menu>
+
+    </item>
+</menu>
