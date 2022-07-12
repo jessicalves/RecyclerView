@@ -32,4 +32,8 @@ object DataStore {
     fun removeCity(position: Int){
         cities.removeAt(position)
     }
+
+    fun clearCitys(){
+        cities.clear()
+    }
 }

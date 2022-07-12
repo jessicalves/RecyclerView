@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.GestureDetector
 import android.view.Menu
+import android.view.MenuItem
 import android.view.MotionEvent
 import android.widget.Toolbar
 import androidx.activity.result.contract.ActivityResultContract
@@ -152,8 +153,28 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    override fun onMenuOpened(featureId: Int, menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.mnuClear -> {
+                DataStore.clearCitys()
+                adapter?.notifyDataSetChanged()
+                updateCollapsingToolbar()
+            }
+
+            R.id.mnuAbout -> {
+                val dialog = AlertDialog.Builder(this@MainActivity).apply {
+                    setTitle("App de Cidades")
+                    setMessage("Desenvolvido por Jessica")
+                    setPositiveButton("Ok", null)
+                    show()
+                }
+            }
+        }
         return true
     }
 
@@ -161,11 +182,5 @@ class MainActivity : AppCompatActivity() {
         val collepsingToolbar = findViewById<CollapsingToolbarLayout>(R.id.collapsedToolbar)
 
         collepsingToolbar.title = "Cidades: ${DataStore.cities.size}"
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-
     }
 }
